@@ -13,7 +13,8 @@ if uploaded_file is not None:
     image = Image.open(uploaded_file).convert("RGB")
     img_arr = np.array(image)
 
-    edge_rgb, gx_vis, gy_vis, magnitude_vis = sobel_edge_detect(img_arr)
+    with st.spinner("Detecting edges… this takes a few seconds ⚙️"):
+        edge_rgb, gx_vis, gy_vis, magnitude_vis = sobel_edge_detect(img_arr)
 
     # Apply threshold to magnitude image for final binary edges
     threshold_mask = (magnitude_vis.astype(np.uint8) >= threshold)
